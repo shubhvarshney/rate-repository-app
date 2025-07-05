@@ -18,11 +18,6 @@
     "src/**/*.js": "eslint",
     "*.{js,json,css,md}": "prettier --write"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kaltsoon/rate-repository-api.git"
