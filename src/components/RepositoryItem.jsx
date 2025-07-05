@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         gap: 5,
+        flex: 1,
+        flexShrink: 1,
     },
     language: {
         marginVertical: 5,
@@ -33,6 +35,10 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignSelf: 'flex-start',
         textAlign: 'center',
+    },
+    description: {
+        flexWrap: 'wrap',
+        flexShrink: 1,
     },
     counts: {
         display: 'flex',
@@ -50,7 +56,7 @@ const RepositoryItem = (props) => {
                 <Image source={{ uri: props.item.ownerAvatarUrl }} style={styles.avatar} />
                 <View style={styles.textInfo}>
                     <Text fontSize='subheading' color="textPrimary" fontWeight='bold' >{props.item.fullName}</Text>
-                    <Text fontSize='subheading' color="textSecondary" >{props.item.description}</Text>
+                    <Text fontSize='subheading' color="textSecondary" style={styles.description} >{props.item.description}</Text>
                     <Text style={styles.language} fontSize='subheading'>{props.item.language}</Text>
                 </View>
             </View>
