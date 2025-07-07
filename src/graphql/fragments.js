@@ -12,3 +12,19 @@ export const REPOSITORY_FIELDS = gql`
     reviewCount
     ownerAvatarUrl
 }`
+
+export const REVIEW_FIELDS = gql`
+  fragment ReviewFields on Review {
+    id
+    text
+    rating
+    createdAt
+    repository {
+      fullName
+    }
+    repositoryId
+    user {
+      id
+      username
+    }
+}`

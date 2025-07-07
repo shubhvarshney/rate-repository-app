@@ -1,5 +1,6 @@
 import { View, StyleSheet, ScrollView, Pressable } from 'react-native';
 import AppBarTab from './AppBarTab';
+import { useNavigate } from 'react-router-native';
 import Text from './Text';
 import Constants from 'expo-constants';
 import useAuthStorage from '../hooks/useAuthStorage';
@@ -26,10 +27,12 @@ const AppBar = () => {
   const { me } = useMe();
   const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
+  const navigate = useNavigate();
 
   const handleSignOut = async () => {
     await authStorage.removeAccessToken();
     await apolloClient.resetStore();
+    navigate('/');
   }
 
   return (
@@ -38,10 +41,17 @@ const AppBar = () => {
           <View style={styles.nav}>
             <AppBarTab link='/' text="Repositories"/>
             {me 
-              ? <Pressable onPress={handleSignOut}>
-                  <Text fontSize="subheading" fontWeight="bold" color="textAppBar" >Sign out</Text>
-                </Pressable>  
-            : <AppBarTab link='/signin' text="Sign in"/>
+              ? <>
+                  <AppBarTab link='/create' text="Create a review"/>
+                  <AppBarTab link='/reviews' text="My reviews"/>
+                  <Pressable onPress={handleSignOut}>
+                    <Text fontSize="subheading" fontWeight="bold" color="textAppBar" >Sign out</Text>
+                  </Pressable>  
+                </>
+            :   <>
+                  <AppBarTab link='/signin' text="Sign in"/>
+                  <AppBarTab link='/signup' text="Sign up"/>
+                </>
             }
           </View>
         </ScrollView>
